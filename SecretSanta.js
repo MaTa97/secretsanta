@@ -52,12 +52,12 @@ SecretSanta.prototype.generate = function () {
             var enforced = this.enforced[ name ];
 
             if ( this.names.indexOf( enforced ) === -1 )
-                throw new Error( name + ' is paired with ' + enforced + ', which hasn\'t been declared as a possible pairing' );
+                throw new Error( 'Wbrew zdefiniowanym zasadom powstała para: ' + name + ', ' + enforced + '.' );
 
             Object.keys( pairings ).forEach( function ( name ) {
 
                 if ( pairings[ name ] === enforced ) {
-                    throw new Error( 'Per your rules, multiple persons are paired with ' + enforced );
+                    throw new Error( 'Według twoich zasad, wiele osób ma na swoim losie imię ' + enforced );
                 }
 
             } );
@@ -93,7 +93,7 @@ SecretSanta.prototype.generate = function () {
         var name = findNextGifter();
 
         if ( candidatePairings[ name ].length === 0 )
-            throw new Error('We haven\'t been able to find a match for ' + name + '! Press "Generate" to try again and, if it still doesn\'t work, try removing some exclusions from your rules. Sorry for the inconvenience!');
+            throw new Error('Nie znaleziono pary dla osoby o imieniu: ' + name + '! Naciśnij "Losuj" jeszcze raz. Jeśli to nie pomoże, spróbuj zmienić zasady losowania.');
 
         var pairing = _.sample( candidatePairings[ name ] );
         delete candidatePairings[ name ];
